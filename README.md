@@ -14,23 +14,58 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Teste - Brain Agriculture
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+O teste tem como objetivo acurar as habilidades do candidato em resolver alguns problemas relacionados à lógica de programação, regra de negócio e orientação à objetos.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+O mesmo consiste em um cadastro de produtor rural com os seguintes dados:
 
-## Learn More
+1.  CPF ou CNPJ
+2.  Nome do produtor
+3.  Nome da Fazenda
+4.  Cidade
+5.  Estado
+6.  Área total em hectares da fazenda
+7.  Área agricultável em hectares
+8.  Área de vegetação em hectares
+9.  Culturas plantadas (Soja, Milho, Algodão, Café, Cana de Açucar)
 
-To learn more about Next.js, take a look at the following resources:
+# Requisitos de negócio
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- O usuário deverá ter a possibilidade de cadastrar, editar, e excluir produtores rurais.
+- O sistema deverá validar CPF e CNPJ digitados incorretamente.
+- A soma de área agrícultável e vegetação, não deverá ser maior que a área total da fazenda
+- Cada produtor pode plantar mais de uma cultura em sua Fazenda.
+- A plataforma deverá ter um Dashboard que exiba:
+  - Total de fazendas em quantidade
+  - Total de fazendas em hectares (área total)
+  - Gráfico de pizza por estado.
+  - Gráfico de pizza por cultura.
+  - Gráfico de pizza por uso de solo (Área agricultável e vegetação)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Requisitos técnicos
 
-## Deploy on Vercel
+- O desenvolvedor front-end deverá utilizar:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  - [ReactJS](http://reactjs.org);
+  - [Redux](https://redux.js.org/) para controlar o estado da aplicação.
+    - Caso entenda que faça sentido, utilize [Context API](https://reactjs.org/docs/context.html) como recurso adicional ou substituto ao Redux (Opcional)
+  - Crie pelo menos um teste unitário por componente (Opcional)
+  - A criação das estruturas de dados "mockados" faz parte da avaliação.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- O desenvolvedor back-end deve:
+
+  - Salvar os dados em um banco de dados Postgres usando o NodeJS como layer de Backend, e entregar os endpoints para cadastrar, editar, e excluir produtores rurais, além do endpoint que retorne os totais para o dashboard.
+  - A criação das estruturas de dados "mockados" faz parte da avaliação.
+
+  Desejável:
+
+  - TypeScript
+  - Conceitos como SOLID, KISS, Clean Code, API Contracts, Tests, Layered Architecture
+
+  Bonus:
+
+  - Aplicação disponibilizada em algum cloud provider de sua preferência
+
+- O desenvolvedor full-stack deve realizar ambos, e concluir a integração.
+  > Não envie a solução como anexo, suba os fontes para seu Github (ou outro repositório) e envie o link para o avaliador.
