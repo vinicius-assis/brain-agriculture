@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import Footer from "./index";
 
 describe("#Footer Suite", () => {
-  it.only("should render the Footer component", () => {
+  it("should render the Footer component", () => {
     render(<Footer />);
 
     const footer = screen.getByTestId("footer");
