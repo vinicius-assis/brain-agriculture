@@ -134,3 +134,8 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+.apexcharts-legend-series > .apexcharts-legend-marker,
+.apexcharts-series.apexcharts-pie-series {
+  opacity: 0.4;
+}

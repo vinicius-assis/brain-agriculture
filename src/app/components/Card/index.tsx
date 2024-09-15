@@ -7,7 +7,10 @@ interface ICardProps {
 
 const Card = ({ children, className = "" }: ICardProps) => {
   return (
-    <div className={`border-light shadow-sm ${className}`} data-testid="card">
+    <div
+      className={`border-light shadow-sm rounded-lg ${className}`}
+      data-testid="card"
+    >
       {children}
     </div>
   );
