@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply text-dark-green;
+  }
+}
+
 @layer utilities {
   .border-light {
     @apply border border-solid border-medium-gray;
@@ -9,7 +15,6 @@
 }
 
 /* RESET */
-
 html,
 body,
 div,
