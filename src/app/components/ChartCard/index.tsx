@@ -45,10 +45,9 @@ const ChartCard = ({ labels, series }: IChartCardProps) => {
   };
   return (
     <Card data-testid="chart-card" className="max-w-96 w-full pl-4 pt-4">
-      <Typography
-        content="Total Orders"
-        className="text-small-spacing font-normal uppercase text-gray-500"
-      />
+      <Typography className="text-small-spacing font-normal uppercase text-gray-500">
+        Total Orders
+      </Typography>
       <ChartComponent width="100%" {...updatedConfig} />
     </Card>
   );

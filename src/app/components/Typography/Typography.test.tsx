@@ -3,7 +3,7 @@ import Typography from "./index";
 
 describe("#Typography Suite", () => {
   it("should render the Typography component as paragraph", () => {
-    render(<Typography content="Typography Element" />);
+    render(<Typography>Typography Element</Typography>);
 
     const element = screen.getByText("Typography Element");
     expect(element).toBeInTheDocument();
@@ -11,14 +11,14 @@ describe("#Typography Suite", () => {
   });
 
   it("should render the Typography component as h1", () => {
-    render(<Typography content="Typography Element" as="h1" />);
+    render(<Typography as="h1">Typography Element</Typography>);
 
     const element = screen.getByText("Typography Element");
     expect(element.tagName).toBe("H1");
   });
 
   it("should render the Typography component as h4", () => {
-    render(<Typography content="Typography Element" as="h4" />);
+    render(<Typography as="h4">Typography Element</Typography>);
 
     const element = screen.getByText("Typography Element");
     expect(element.tagName).toBe("H4");
@@ -26,7 +26,9 @@ describe("#Typography Suite", () => {
 
   it("should Typography has a className equal test", () => {
     render(
-      <Typography className="test" content="Typography Element" as="h4" />
+      <Typography className="test" as="h4">
+        Typography Element
+      </Typography>
     );
 
     const elementClass = screen.getByText("Typography Element").className;
