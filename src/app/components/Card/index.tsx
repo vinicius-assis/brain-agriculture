@@ -1,13 +1,14 @@
 import React from "react";
 
 interface ICardProps {
-  content: React.ReactNode;
+  children: React.ReactNode;
+  className?: string;
 }
 
-const Card = ({ content }: ICardProps) => {
+const Card = ({ children, className = "" }: ICardProps) => {
   return (
-    <div className="border-light shadow-sm" data-testid="card">
-      {content}
+    <div className={`border-light shadow-sm ${className}`} data-testid="card">
+      {children}
     </div>
   );
 };

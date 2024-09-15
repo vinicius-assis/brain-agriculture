@@ -3,14 +3,18 @@ import Card from "./index";
 
 describe("#Card Suite", () => {
   it("should render the Card component", () => {
-    render(<Card content="Test" />);
+    render(<Card>Teste</Card>);
 
     const cardElement = screen.getByTestId("card");
     expect(cardElement).toBeInTheDocument();
   });
 
   it("should Card component be able to render ReactNode as content", () => {
-    render(<Card content={<p>Card test</p>} />);
+    render(
+      <Card>
+        <p>Card test</p>
+      </Card>
+    );
 
     const cardElement = screen.getByTestId("card").children[0];
     expect(cardElement.tagName).toBe("P");
