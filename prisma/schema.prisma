@@ -1,0 +1,32 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Farms {
+  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+  farmName       String
+  userId         String    @db.ObjectId
+  city           String
+  state          String
+  totalArea      String
+  cultivableArea String
+  vegetationArea String
+  crops          String
+  created_at     DateTime  @default(now())
+  updated_at     DateTime  @updatedAt
+  user           Producers @relation(fields: [userId], references: [id])
+}
+
+model Producers {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  document   String   @unique
+  name       String
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+  posts      Farms[]
+}
