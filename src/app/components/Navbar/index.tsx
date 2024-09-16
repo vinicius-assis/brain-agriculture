@@ -3,21 +3,15 @@ import React from "react";
 import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import { useSelector } from "react-redux";
-import { getModalState } from "../../../../store/reducers/selectors";
 import { useAppDispatch } from "../../../../store/hooks";
-import { closeModal, openModal } from "../../../../store/reducers/actions";
+import { toggleMenu } from "../../../../store/reducers/actions";
+import { getMenuState } from "../../../../store/reducers/selectors";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
-  const isOpen = useSelector(getModalState).show;
+  const isOpen = useSelector(getMenuState);
 
-  const handleMenu = () => {
-    if (isOpen) {
-      dispatch(closeModal());
-    } else {
-      dispatch(openModal("menu"));
-    }
-  };
+  const handleMenu = () => dispatch(toggleMenu());
 
   return (
     <nav className="flex px-5 justify-between items-center w-full h-16 bg-medium-green">

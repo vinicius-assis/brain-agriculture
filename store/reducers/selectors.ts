@@ -1,3 +1,3 @@
 import { RootState } from "../index";
 
-export const getModalState = (state: RootState) => state.application.modalState;
+export const getMenuState = (state: RootState) => state.application.showMenu;

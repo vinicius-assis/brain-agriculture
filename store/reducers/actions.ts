@@ -1,5 +1,5 @@
 import { createAction } from "@reduxjs/toolkit";
 
-export const openModal = createAction<string>("application/openModal");
+export const toggleMenu = createAction("application/toggleMenu");
 
-export const closeModal = createAction("application/closeModal");
+export const toggleForm = createAction("application/toggleForm");

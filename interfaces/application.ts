@@ -19,8 +19,3 @@ export interface Farm {
   vegetationArea: string;
   crops: string;
 }
-
-export interface Modal {
-  show: boolean;
-  name: string | null;
-}

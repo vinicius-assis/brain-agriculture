@@ -1,36 +1,29 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { Farm, Modal, Profile } from "../../interfaces/application";
-import { closeModal, openModal } from "./actions";
+import { Farm, Profile } from "../../interfaces/application";
+import { toggleForm, toggleMenu } from "./actions";
 
 interface ApplicationState {
   profiles: Profile[];
   farms: Farm[];
-  modalState: Modal;
+  showMenu: boolean;
+  showForm: boolean;
 }
 
 const initialState: ApplicationState = {
   profiles: [],
   farms: [],
-  modalState: {
-    show: false,
-    name: null,
-  },
+  showMenu: false,
+  showForm: false,
 };
 
 export const ApplicationReducer = createReducer(initialState, (builder) => {
-  builder.addCase(openModal, (state, action) => ({
+  builder.addCase(toggleMenu, (state) => ({
     ...state,
-    modalState: {
-      show: true,
-      name: action.payload,
-    },
+    showMenu: !state.showMenu,
   }));
 
-  builder.addCase(closeModal, (state) => ({
+  builder.addCase(toggleForm, (state) => ({
     ...state,
-    modalState: {
-      show: false,
-      name: null,
-    },
+    showForm: !state.showForm,
   }));
 });
