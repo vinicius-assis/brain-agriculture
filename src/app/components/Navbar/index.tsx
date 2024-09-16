@@ -15,7 +15,7 @@ const Navbar = () => {
 
   return (
     <nav className="flex px-5 justify-between items-center w-full h-16 bg-medium-green">
-      <button className="cursor-pointer" onClick={handleMenu}>
+      <button className="cursor-pointer md:hidden" onClick={handleMenu}>
         {isOpen ? (
           <X data-testid="close-icon" color="#fff" size={38} />
         ) : (

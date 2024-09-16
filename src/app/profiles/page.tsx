@@ -15,17 +15,25 @@ export default function Profiles() {
   const handleCloseForm = () => dispatch(toggleForm());
 
   return (
-    <div className="p-8 h-[calc(100vh-104px)] overflow-hidden">
+    <div className="p-8 h-[calc(100vh-104px)] overflow-hidden md:pl-0 md:flex">
       <Menu />
       <FarmForm show={showForm} onClose={handleCloseForm} />
-      <div className="flex items-center justify-between">
-        <Typography className="text-base-semi">Profiles</Typography>
-        <Button variant="sm" onClick={() => dispatch(toggleForm())}>
-          + Add
-        </Button>
-      </div>
-      <div className="w-full flex gap-6 mt-9 overflow-auto">
-        <Table headers={TABLE_HEADERS_DATA} rows={PROFILES_DATA} />
+      <div className="w-full">
+        <div className="flex items-center justify-between">
+          <Typography className="md:text-huge text-base-semi">
+            Profiles
+          </Typography>
+          <Button
+            className="md:hidden"
+            variant="sm"
+            onClick={() => dispatch(toggleForm())}
+          >
+            + Add
+          </Button>
+        </div>
+        <div className="w-full flex gap-6 mt-9 overflow-auto">
+          <Table headers={TABLE_HEADERS_DATA} rows={PROFILES_DATA} />
+        </div>
       </div>
     </div>
   );
