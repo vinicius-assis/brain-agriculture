@@ -1,9 +1,10 @@
 import React from "react";
 import { usePathname } from "next/navigation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { LayoutDashboard, Tractor, User } from "lucide-react";
 import { getMenuState } from "../../../../store/reducers/selectors";
 import Button from "../Button";
+import { toggleForm } from "../../../../store/reducers/actions";
 
 const MenuNavigation = () => {
   const pathname = usePathname();
@@ -42,7 +43,9 @@ const MenuNavigation = () => {
 };
 
 const Menu = () => {
+  const dispatch = useDispatch();
   const showMenu = useSelector(getMenuState);
+  const handleCloseForm = () => dispatch(toggleForm());
 
   return (
     <>
@@ -55,7 +58,9 @@ const Menu = () => {
         <MenuNavigation />
       </div>
       <div className="w-1/4 relative md:block md:mr-4 hidden">
-        <Button className="mx-auto mb-8">+ New Profile</Button>
+        <Button onClick={handleCloseForm} className="mx-auto mb-8">
+          + New Profile
+        </Button>
         <MenuNavigation />
       </div>
     </>
