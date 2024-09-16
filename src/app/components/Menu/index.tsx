@@ -1,9 +1,11 @@
 import React from "react";
+import { usePathname } from "next/navigation";
 import { useSelector } from "react-redux";
 import { LayoutDashboard, Tractor, User } from "lucide-react";
 import { getMenuState } from "../../../../store/reducers/selectors";
 
 const Menu = () => {
+  const pathname = usePathname();
   const showMenu = useSelector(getMenuState);
 
   return (
@@ -15,25 +17,31 @@ const Menu = () => {
     >
       <nav className="flex flex-col gap-4 items-center">
         <a
-          className="flex items-center gap-2 text-xl font-semibold w-fit"
+          className={`flex items-center gap-2 text-xl font-semibold w-fit ${
+            pathname === "/" ? "underline text-medium-green" : ""
+          }`}
           href="/"
         >
           <LayoutDashboard size={24} strokeWidth={2} color="#065F46" />
           Dashboard
         </a>
         <a
-          className="flex items-center gap-2 text-xl font-semibold w-fit"
-          href="/profile"
+          className={`flex items-center gap-2 text-xl font-semibold w-fit ${
+            pathname === "/profiles" ? "underline text-medium-green" : ""
+          }`}
+          href="/profiles"
         >
           <User size={24} strokeWidth={2} color="#065F46" />
-          Profile
+          Profiles
         </a>
         <a
-          className="flex items-center gap-2 text-xl font-semibold w-fit"
-          href="/farm"
+          className={`flex items-center gap-2 text-xl font-semibold w-fit ${
+            pathname === "/farms" ? "underline text-medium-green" : ""
+          }`}
+          href="/farms"
         >
           <Tractor size={24} strokeWidth={2} color="#065F46" />
-          Farm
+          Farms
         </a>
       </nav>
     </div>
