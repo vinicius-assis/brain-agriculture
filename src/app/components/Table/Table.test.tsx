@@ -9,7 +9,7 @@ const mockRows = [
 
 describe("#Table Suite", () => {
   it("should render the table with headers", () => {
-    render(<Table items={mockItems} rows={mockRows} />);
+    render(<Table headers={mockItems} rows={mockRows} />);
 
     mockItems.forEach((item) => {
       expect(screen.getByText(item)).toBeInTheDocument();
@@ -17,7 +17,7 @@ describe("#Table Suite", () => {
   });
 
   it("should render the rows with correct data", () => {
-    render(<Table items={mockItems} rows={mockRows} />);
+    render(<Table headers={mockItems} rows={mockRows} />);
 
     mockRows.forEach(({ name, document, farmName }) => {
       expect(screen.getByText(name)).toBeInTheDocument();

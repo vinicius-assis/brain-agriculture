@@ -2,17 +2,17 @@ import React from "react";
 import Typography from "../Typography";
 
 interface ITableProps {
-  items: Array<string>;
+  headers: Array<string>;
   rows: { [key: string]: string }[];
 }
 
-const Table = ({ items, rows }: ITableProps) => {
+const Table = ({ headers, rows }: ITableProps) => {
   return (
-    <div className="relative flex flex-col w-full h-full text-dark-green bg-white shadow-md rounded-lg bg-clip-border">
-      <table className="w-full text-left table-auto min-w-max">
+    <div className="relative flex flex-col w-full h-full text-dark-green bg-white shadow-md rounded-lg bg-clip-border overflow-auto">
+      <table className="w-full text-left table-auto min-w-max overflow-auto">
         <thead>
           <tr>
-            {items.map((item, index) => (
+            {headers.map((item, index) => (
               <th
                 key={item}
                 className={`p-4 border-b border-slate-200 bg-light-green ${
