@@ -34,7 +34,7 @@ const Input = <T extends FieldValues>({
         {label}
       </label>
       <input
-        className="appearance-none block w-full bg-off-white text-dark-green border-light rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-medium-green"
+        className="appearance-none block w-full bg-off-white text-dark-green border-light rounded-lg py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white focus:border-medium-green"
         id={name}
         type={type}
         placeholder={placeholder}
