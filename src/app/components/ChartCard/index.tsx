@@ -32,9 +32,14 @@ const chartConfig = {
 interface IChartCardProps {
   labels: Array<string>;
   series: Array<number>;
+  title?: string;
 }
 
-const ChartCard = ({ labels, series }: IChartCardProps) => {
+const ChartCard = ({
+  title = "Total Orders",
+  labels,
+  series,
+}: IChartCardProps) => {
   const updatedConfig = {
     ...chartConfig,
     options: {
@@ -46,7 +51,7 @@ const ChartCard = ({ labels, series }: IChartCardProps) => {
   return (
     <Card data-testid="chart-card" className="max-w-96 w-full pl-4 pt-4">
       <Typography className="text-small-spacing font-normal uppercase text-gray-500">
-        Total Orders
+        {title}
       </Typography>
       <ChartComponent width="100%" {...updatedConfig} />
     </Card>

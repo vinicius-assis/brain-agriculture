@@ -1,10 +1,16 @@
-import { LayoutDashboard, Tractor, User } from "lucide-react";
 import React from "react";
+import { useSelector } from "react-redux";
+import { LayoutDashboard, Tractor, User } from "lucide-react";
+import { getMenuState } from "../../../../store/reducers/selectors";
 
 const Menu = () => {
+  const showMenu = useSelector(getMenuState);
+
   return (
     <div
-      className="w-full absolute h-[calc(100vh-104px)] bg-off-white flex justify-center z-10 top-[64px] left-0 pt-20 overflow-hidden"
+      className={`w-full absolute h-[calc(100vh-104px)] bg-off-white flex justify-center z-10 left-0 top-[64px] pt-20 overflow-hidden ${
+        !showMenu ? "-translate-x-[100%]" : "translate-x-[0]"
+      } transition-all ease-out duration-300`}
       data-testid="menu"
     >
       <nav className="flex flex-col gap-4 items-center">

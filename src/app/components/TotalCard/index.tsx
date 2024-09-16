@@ -14,7 +14,7 @@ const TotalCard = ({ title, value, percent, decrease }: ITotalCardProps) => {
   return (
     <Card
       data-testid="total-card"
-      className="max-w-52 max-h-28 w-full h-full px-4 py-2"
+      className="flex flex-col justify-between md:min-w-72 min-w-52 h-28 w-full px-4 py-2"
     >
       <Typography
         as="h3"
@@ -23,7 +23,7 @@ const TotalCard = ({ title, value, percent, decrease }: ITotalCardProps) => {
         {title}
       </Typography>
       <div className="flex justify-between items-center">
-        <Typography className="text-2xl font-bold">{value}</Typography>
+        <Typography className="text-3xl font-bold">{value}</Typography>
         <Typography
           className={`flex items-center text-sm font-medium ${
             decrease ? "text-red-000" : "text-normal-green"
