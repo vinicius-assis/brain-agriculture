@@ -7,26 +7,25 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Farms {
-  id             String    @id @default(auto()) @map("_id") @db.ObjectId
+model Farm {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
   farmName       String
-  userId         String    @db.ObjectId
   city           String
   state          String
   totalArea      String
   cultivableArea String
   vegetationArea String
   crops          String
-  created_at     DateTime  @default(now())
-  updated_at     DateTime  @updatedAt
-  user           Producers @relation(fields: [userId], references: [id])
+  producerId     String   @db.ObjectId
+  updated_at     DateTime @updatedAt
+  producer       Producer @relation("ProducerFarms", fields: [producerId], references: [id])
 }
 
-model Producers {
+model Producer {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   document   String   @unique
   name       String
   created_at DateTime @default(now())
   updated_at DateTime @updatedAt
-  posts      Farms[]
+  farms      Farm[]   @relation("ProducerFarms")
 }
