@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Select, { SingleValue, MultiValue } from "react-select";
 import {
   UseFormRegister,
@@ -20,6 +20,7 @@ interface ISelectProps<T extends FieldValues> {
   errors?: FieldErrors<T>;
   isMulti?: boolean;
   menuPlacement?: "bottom" | "auto" | "top";
+  defaultValue?: any;
 }
 
 const SelectInput = <T extends FieldValues>({
@@ -30,11 +31,29 @@ const SelectInput = <T extends FieldValues>({
   errors,
   isMulti = false,
   menuPlacement = "bottom",
+  defaultValue = [],
 }: ISelectProps<T>) => {
   const formattedOptions = options.map((option) => ({
     value: option.value,
     label: option.label,
   }));
+
+  const getDefaultValue = () => {
+    if (isMulti) {
+      return defaultValue.map((value: string) =>
+        formattedOptions.find((option) => option.value === value)
+      );
+    }
+    return (
+      formattedOptions.find((option) => option.value === defaultValue) || null
+    );
+  };
+
+  const [selectedValue, setSelectedValue] = useState<any>(getDefaultValue());
+
+  useEffect(() => {
+    setSelectedValue(getDefaultValue());
+  }, [defaultValue]);
 
   const handleChange = (
     selectedOption: SingleValue<SelectOption> | MultiValue<SelectOption> | null
@@ -46,11 +65,13 @@ const SelectInput = <T extends FieldValues>({
           )
         : [];
       register(name).onChange({ target: { name, value: values } });
+      setSelectedValue(selectedOption);
     } else {
       const value = selectedOption
         ? (selectedOption as SingleValue<SelectOption>)?.value
         : "";
       register(name).onChange({ target: { name, value } });
+      setSelectedValue(selectedOption);
     }
   };
 
@@ -63,6 +84,7 @@ const SelectInput = <T extends FieldValues>({
         isMulti={isMulti}
         options={formattedOptions}
         onChange={handleChange}
+        value={selectedValue}
         classNamePrefix="select"
         placeholder={`Select ${label}`}
         menuPlacement={menuPlacement}

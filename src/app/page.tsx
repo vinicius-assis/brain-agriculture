@@ -2,7 +2,11 @@
 import { useDispatch, useSelector } from "react-redux";
 import Button from "./components/Button";
 import Menu from "./components/Menu";
-import { fetchProducers, toggleForm } from "../../store/reducers/actions";
+import {
+  closeForm,
+  fetchProducers,
+  openForm,
+} from "../../store/reducers/actions";
 import FarmForm from "./components/FarmForm";
 import {
   getFormState,
@@ -20,7 +24,7 @@ export default function Dashboard() {
   const showForm = useSelector(getFormState);
   const loading = useSelector(getLoadingState);
   const producersData = useSelector(getProducers);
-  const handleCloseForm = () => dispatch(toggleForm());
+  const handleCloseForm = () => dispatch(closeForm());
 
   useEffect(() => {
     dispatch(fetchProducers());
@@ -29,9 +33,9 @@ export default function Dashboard() {
   return (
     <div className="p-8 h-[calc(100vh-104px)] overflow-auto md:pl-0 md:flex">
       <Menu />
-      <FarmForm show={showForm} onClose={handleCloseForm} />
+      <FarmForm show={showForm.show} onClose={handleCloseForm} />
       <Button
-        onClick={() => dispatch(toggleForm())}
+        onClick={() => dispatch(openForm())}
         className="mx-auto md:hidden"
       >
         + New Profile

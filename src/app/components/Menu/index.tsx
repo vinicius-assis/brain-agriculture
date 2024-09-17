@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { LayoutDashboard, Tractor, User } from "lucide-react";
 import { getMenuState } from "../../../../store/reducers/selectors";
 import Button from "../Button";
-import { toggleForm } from "../../../../store/reducers/actions";
+import { openForm } from "../../../../store/reducers/actions";
 import Link from "next/link";
 
 const MenuNavigation = () => {
@@ -46,7 +46,7 @@ const MenuNavigation = () => {
 const Menu = () => {
   const dispatch = useDispatch();
   const showMenu = useSelector(getMenuState);
-  const handleCloseForm = () => dispatch(toggleForm());
+  const handleOpenForm = () => dispatch(openForm());
 
   return (
     <>
@@ -59,7 +59,7 @@ const Menu = () => {
         <MenuNavigation />
       </div>
       <div className="w-1/4 relative md:block md:mr-4 hidden">
-        <Button onClick={handleCloseForm} className="mx-auto mb-8">
+        <Button onClick={handleOpenForm} className="mx-auto mb-8">
           + New Profile
         </Button>
         <MenuNavigation />

@@ -6,7 +6,11 @@ import { FARM_TABLE_HEADERS } from "../components/Table/data";
 import Typography from "../components/Typography";
 import Button from "../components/Button";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchProducers, toggleForm } from "../../../store/reducers/actions";
+import {
+  fetchProducers,
+  closeForm,
+  openForm,
+} from "../../../store/reducers/actions";
 import {
   getFormState,
   getLoadingState,
@@ -19,10 +23,10 @@ import EmptyMessage from "../components/EmptyMessage";
 
 export default function Farms() {
   const dispatch = useDispatch<AppDispatch>();
-  const showForm = useSelector(getFormState);
+  const formState = useSelector(getFormState);
   const producersData = useSelector(getProducers);
   const loading = useSelector(getLoadingState);
-  const handleCloseForm = () => dispatch(toggleForm());
+  const handleCloseForm = () => dispatch(closeForm());
 
   const getRows = () =>
     producersData?.map(
@@ -60,7 +64,7 @@ export default function Farms() {
   return (
     <div className="p-8 h-[calc(100vh-104px)] overflow-hidden md:pl-0 md:flex">
       <Menu />
-      <FarmForm show={showForm} onClose={handleCloseForm} />
+      <FarmForm show={formState.show} onClose={handleCloseForm} />
       {loading ? (
         <Loader />
       ) : (
@@ -76,7 +80,7 @@ export default function Farms() {
                 <Button
                   className="md:hidden"
                   variant="sm"
-                  onClick={() => dispatch(toggleForm())}
+                  onClick={() => dispatch(openForm())}
                 >
                   + Add
                 </Button>

@@ -9,7 +9,11 @@ import { ProducerService } from "./service";
 
 export const toggleMenu = createAction("application/toggleMenu");
 
-export const toggleForm = createAction("application/toggleForm");
+export const openForm = createAction<string | undefined>(
+  "application/openForm"
+);
+
+export const closeForm = createAction("application/closeForm");
 
 export const openDeleteModal = createAction<string | undefined>(
   "application/openDeleteModal"

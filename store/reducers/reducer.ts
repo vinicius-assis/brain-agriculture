@@ -6,17 +6,21 @@ import {
   deleteProducer,
   fetchProducers,
   openDeleteModal,
-  toggleForm,
+  closeForm,
   toggleMenu,
   updateProducer,
+  openForm,
 } from "./actions";
 import generateChartsData from "@/helpers/generateChartsData";
 
 interface ApplicationState {
   producers: Producer[];
   showMenu: boolean;
-  showForm: boolean;
   loading: boolean;
+  formModal: {
+    show: boolean;
+    id: string | undefined;
+  };
   deleteModal: {
     show: boolean;
     id: string | undefined;
@@ -27,8 +31,11 @@ interface ApplicationState {
 const initialState: ApplicationState = {
   producers: [],
   showMenu: false,
-  showForm: false,
   loading: true,
+  formModal: {
+    show: false,
+    id: "",
+  },
   deleteModal: {
     show: false,
     id: "",
@@ -128,9 +135,20 @@ export const ApplicationReducer = createReducer(initialState, (builder) => {
     showMenu: !state.showMenu,
   }));
 
-  builder.addCase(toggleForm, (state) => ({
+  builder.addCase(closeForm, (state) => ({
     ...state,
-    showForm: !state.showForm,
+    formModal: {
+      id: "",
+      show: false,
+    },
+  }));
+
+  builder.addCase(openForm, (state, action) => ({
+    ...state,
+    formModal: {
+      id: action.payload || "",
+      show: true,
+    },
   }));
 
   builder.addCase(openDeleteModal, (state, action) => ({

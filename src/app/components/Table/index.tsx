@@ -3,17 +3,18 @@ import Typography from "../Typography";
 import { Trash2 } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store";
-import { openDeleteModal } from "../../../../store/reducers/actions";
+import { openDeleteModal, openForm } from "../../../../store/reducers/actions";
 
 interface ITableProps {
   headers: Array<string>;
-  rows: Array<Record<string, string | undefined>>;
+  rows: Array<Record<string, string | number | string[] | undefined>>;
 }
 
 const Table = ({ headers, rows }: ITableProps) => {
   const dispatch = useDispatch<AppDispatch>();
 
   const handleDeleteItem = (id: string) => dispatch(openDeleteModal(id));
+  const handleEditItem = (id: string) => dispatch(openForm(id));
 
   return (
     <div className="relative flex flex-col w-full h-full text-dark-green bg-white shadow-md rounded-lg bg-clip-border overflow-auto">
@@ -60,7 +61,11 @@ const Table = ({ headers, rows }: ITableProps) => {
                 })}
                 <td className="p-4 py-5">
                   <a
-                    href="#"
+                    onClick={
+                      (row.id as string)
+                        ? () => handleEditItem(row.id as string)
+                        : undefined
+                    }
                     className="text-sm text-indigo-600 hover:text-indigo-900"
                   >
                     Edit
@@ -69,7 +74,9 @@ const Table = ({ headers, rows }: ITableProps) => {
                 <td className="p-4 py-5">
                   <a
                     onClick={
-                      row.id ? () => handleDeleteItem(row.id!) : undefined
+                      (row.id as string)
+                        ? () => handleDeleteItem(row.id as string)
+                        : undefined
                     }
                     className="text-sm text-red-000 hover:text-red-300"
                   >
