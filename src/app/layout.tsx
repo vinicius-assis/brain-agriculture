@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import StoreProvider from "./StoreProvider";
+import ConfirmRemoveModal from "./components/ConfirmRemoveModal";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -24,6 +25,7 @@ export default function RootLayout({
       <body className="bg-off-white">
         <StoreProvider>
           <Navbar />
+          <ConfirmRemoveModal />
           {children}
           <Footer />
         </StoreProvider>
