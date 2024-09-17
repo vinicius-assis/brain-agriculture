@@ -29,9 +29,9 @@ export const states = [
 ];
 
 export const crops = [
-  { value: "Soja", label: "Soja" },
-  { value: "Milho", label: "Milho" },
-  { value: "Algodão", label: "Algodão" },
-  { value: "Café", label: "Café" },
-  { value: "Cana de Açúcar", label: "Cana de Açúcar" },
+  { value: "Soybean", label: "Soybean" },
+  { value: "Corn", label: "Corn" },
+  { value: "Cotton", label: "Cotton" },
+  { value: "Coffee", label: "Coffee" },
+  { value: "Sugarcane", label: "Sugarcane" },
 ];
