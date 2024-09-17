@@ -1,6 +1,11 @@
 import { screen, render, fireEvent, waitFor } from "@testing-library/react";
 import FarmForm from ".";
 
+jest.mock("react-redux", () => ({
+  useSelector: jest.fn(),
+  useDispatch: jest.fn(),
+}));
+
 describe("#FarmForm Suite", () => {
   const mockOnClose = jest.fn();
 

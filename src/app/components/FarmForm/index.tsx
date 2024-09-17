@@ -11,7 +11,7 @@ import Button from "../Button";
 import { X } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store";
-import { createProducer } from "../../../../store/reducers/actions";
+import { createProducer, toggleForm } from "../../../../store/reducers/actions";
 
 type FormData = z.infer<typeof schema>;
 
@@ -26,6 +26,7 @@ const FarmForm = ({ show, onClose }: IFarmFormProps) => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
@@ -35,6 +36,8 @@ const FarmForm = ({ show, onClose }: IFarmFormProps) => {
 
   const onSubmit = async (data: FormData) => {
     dispatch(createProducer(data));
+    dispatch(toggleForm());
+    reset();
   };
 
   return (
