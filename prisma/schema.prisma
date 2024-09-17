@@ -7,8 +7,10 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Farm {
+model Producer {
   id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  document       String   @unique
+  name           String
   farmName       String
   city           String
   state          String
@@ -16,16 +18,6 @@ model Farm {
   cultivableArea String
   vegetationArea String
   crops          String
-  producerId     String   @db.ObjectId
+  created_at     DateTime @default(now())
   updated_at     DateTime @updatedAt
-  producer       Producer @relation("ProducerFarms", fields: [producerId], references: [id])
-}
-
-model Producer {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  document   String   @unique
-  name       String
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
-  farms      Farm[]   @relation("ProducerFarms")
 }
