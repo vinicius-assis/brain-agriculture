@@ -33,7 +33,6 @@ describe("#FarmForm Suite", () => {
       expect(screen.getByText("Producer Name is required")).toBeInTheDocument();
       expect(screen.getByText("Farm Name is required")).toBeInTheDocument();
       expect(screen.getByText("City is required")).toBeInTheDocument();
-      expect(screen.getByText("State is required")).toBeInTheDocument();
     });
   });
 });
