@@ -8,7 +8,7 @@ export const schema = z.object({
     .regex(cpfOrCnpjRegex, "Document is invalid")
     .min(11, "CPF must be 11 digits")
     .max(14, "CNPJ must be 14 digits"),
-  producerName: z.string().nonempty("Producer Name is required"),
+  name: z.string().nonempty("Producer Name is required"),
   farmName: z.string().nonempty("Farm Name is required"),
   city: z.string().nonempty("City is required"),
   state: z.string().nonempty("State is required"),

@@ -9,6 +9,9 @@ import Select from "../Select";
 import { crops, states } from "../Select/options";
 import Button from "../Button";
 import { X } from "lucide-react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../../../store";
+import { createProducer } from "../../../../store/reducers/actions";
 
 type FormData = z.infer<typeof schema>;
 
@@ -18,6 +21,7 @@ interface IFarmFormProps {
 }
 
 const FarmForm = ({ show, onClose }: IFarmFormProps) => {
+  const dispatch = useDispatch<AppDispatch>();
   const {
     register,
     handleSubmit,
@@ -29,8 +33,8 @@ const FarmForm = ({ show, onClose }: IFarmFormProps) => {
     },
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log(data);
+  const onSubmit = async (data: FormData) => {
+    dispatch(createProducer(data));
   };
 
   return (
@@ -56,7 +60,7 @@ const FarmForm = ({ show, onClose }: IFarmFormProps) => {
           label="Profile Name"
           placeholder="Profile Name.."
           register={register}
-          name="producerName"
+          name="name"
           errors={errors}
         />
         <Input
