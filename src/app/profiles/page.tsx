@@ -2,17 +2,27 @@
 import Table from "../components/Table";
 import Menu from "../components/Menu";
 import FarmForm from "../components/FarmForm";
-import { PROFILES_DATA, TABLE_HEADERS_DATA } from "../components/Table/data";
+import { TABLE_HEADERS_DATA } from "../components/Table/data";
 import Typography from "../components/Typography";
 import Button from "../components/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleForm } from "../../../store/reducers/actions";
-import { getFormState } from "../../../store/reducers/selectors";
+import { getFormState, getProducers } from "../../../store/reducers/selectors";
 
 export default function Profiles() {
   const dispatch = useDispatch();
   const showForm = useSelector(getFormState);
+  const producersData = useSelector(getProducers);
   const handleCloseForm = () => dispatch(toggleForm());
+
+  const getRows = () =>
+    producersData?.map(({ document, name, farmName }) => ({
+      name,
+      document,
+      farmname: farmName,
+    }));
+
+  const rows = getRows();
 
   return (
     <div className="p-8 h-[calc(100vh-104px)] overflow-hidden md:pl-0 md:flex">
@@ -32,7 +42,7 @@ export default function Profiles() {
           </Button>
         </div>
         <div className="w-full flex gap-6 mt-9 overflow-auto">
-          <Table headers={TABLE_HEADERS_DATA} rows={PROFILES_DATA} />
+          <Table headers={TABLE_HEADERS_DATA} rows={rows} />
         </div>
       </div>
     </div>

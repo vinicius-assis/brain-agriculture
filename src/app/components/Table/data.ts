@@ -37,3 +37,11 @@ export const PROFILES_DATA = [
 ];
 
 export const TABLE_HEADERS_DATA = ["Name", "Document", "Farm Name"];
+export const FARM_TABLE_HEADERS = [
+  "Farm Name",
+  "Location",
+  "Total Area",
+  "Cultivable Area",
+  "Vegetation Area",
+  "Crops",
+];

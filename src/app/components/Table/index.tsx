@@ -31,26 +31,22 @@ const Table = ({ headers, rows }: ITableProps) => {
           </tr>
         </thead>
         <tbody>
-          {rows.map(({ document, name, farmName }) => (
+          {rows.map((row, index) => (
             <tr
-              key={document}
+              key={index}
               className="hover:bg-slate-50 border-b border-slate-200 cursor-pointer"
             >
-              <td className="p-4 py-5">
-                <Typography className="block font-semibold text-sm text-slate-800">
-                  {name}
-                </Typography>
-              </td>
-              <td className="p-4 py-5">
-                <Typography className="text-sm text-slate-500">
-                  {document}
-                </Typography>
-              </td>
-              <td className="p-4 py-5">
-                <Typography className="text-sm text-slate-500">
-                  {farmName}
-                </Typography>
-              </td>
+              {headers.map((header) => {
+                const itemKey = header.toLowerCase().replace(" ", "");
+                if (index === 0) console.log(itemKey, row, row[itemKey]);
+                return (
+                  <td key={header} className="p-4 py-5">
+                    <Typography className="text-sm text-slate-500">
+                      {row[itemKey]}
+                    </Typography>
+                  </td>
+                );
+              })}
               <td className="p-4 py-5">
                 <a
                   href="#"
