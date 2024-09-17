@@ -12,7 +12,7 @@ export const toggleMenu = createAction("application/toggleMenu");
 export const toggleForm = createAction("application/toggleForm");
 
 export const createProducer = createAsyncThunk<PostProducerResponse, Producer>(
-  "application/fetchProducers",
+  "application/createProducer",
   async (data) => ProducerService.createProducer(data)
 );
 
@@ -24,11 +24,11 @@ export const fetchProducers = createAsyncThunk<GetProducerResponse>(
 export const updateProducer = createAsyncThunk<
   Producer,
   { id: string; data: Partial<Producer> }
->("application/fetchProducers", async ({ id, data }) =>
+>("application/updateProducer", async ({ id, data }) =>
   ProducerService.updateProducer(id, data)
 );
 
 export const deleteProducer = createAsyncThunk<DeleteProducerResponse, string>(
-  "application/fetchProducers",
+  "application/deleteProducer",
   async (id) => ProducerService.deleteProducers(id)
 );

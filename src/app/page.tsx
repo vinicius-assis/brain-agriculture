@@ -4,14 +4,20 @@ import Button from "./components/Button";
 import ChartCard from "./components/ChartCard";
 import Menu from "./components/Menu";
 import TotalCard from "./components/TotalCard";
-import { toggleForm } from "../../store/reducers/actions";
+import { fetchProducers, toggleForm } from "../../store/reducers/actions";
 import FarmForm from "./components/FarmForm";
 import { getFormState } from "../../store/reducers/selectors";
+import { useEffect } from "react";
+import { AppDispatch } from "../../store";
 
 export default function Dashboard() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const showForm = useSelector(getFormState);
   const handleCloseForm = () => dispatch(toggleForm());
+
+  useEffect(() => {
+    dispatch(fetchProducers());
+  }, []);
 
   return (
     <div className="p-8 h-[calc(100vh-104px)] overflow-auto md:pl-0 md:flex">

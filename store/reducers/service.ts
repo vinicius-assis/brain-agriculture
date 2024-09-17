@@ -2,7 +2,7 @@ import { Producer } from "../../interfaces/application";
 
 const createProducer = async (data: Producer) => {
   try {
-    const response = await fetch("api/producers", {
+    const response = await fetch("/api/producer", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -19,7 +19,11 @@ const createProducer = async (data: Producer) => {
 
 const fetchProducers = async () => {
   try {
-    const response = await fetch("api/producers");
+    const response = await fetch("/api/producer", {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
     const json = response.json();
 
     return json;
@@ -30,7 +34,7 @@ const fetchProducers = async () => {
 
 const deleteProducers = async (id: string) => {
   try {
-    const response = await fetch(`api/producers/${id}`, {
+    const response = await fetch(`/api/producer/${id}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -47,7 +51,7 @@ const deleteProducers = async (id: string) => {
 
 const updateProducer = async (id: string, data: Partial<Producer>) => {
   try {
-    const response = await fetch(`api/producers/${id}`, {
+    const response = await fetch(`/api/producer/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
