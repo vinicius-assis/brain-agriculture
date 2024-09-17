@@ -13,8 +13,8 @@ import {
 } from "../../store/reducers/selectors";
 import { useEffect } from "react";
 import { AppDispatch } from "../../store";
-import Typography from "./components/Typography";
 import Loader from "./components/Loader";
+import EmptyMessage from "./components/EmptyMessage";
 
 export default function Dashboard() {
   const dispatch = useDispatch<AppDispatch>();
@@ -37,49 +37,35 @@ export default function Dashboard() {
       >
         + New Profile
       </Button>
-      <div className="w-full">
-        {loading ? (
-          <Loader />
-        ) : (
-          <>
-            {!producersData?.length ? (
-              <Typography>No data found</Typography>
-            ) : (
-              <>
-                <div className="w-full flex gap-6 mt-9 overflow-auto pb-2">
-                  <TotalCard title="Total Profiles" value="20" percent="20%" />
-                  <TotalCard title="Total Farms" value="50" percent="14%" />
-                  <TotalCard title="Total Area" value="50m2" percent="14%" />
-                </div>
-                <div className="flex md:flex-row flex-col gap-10 mt-10">
-                  <ChartCard
-                    title="Total Crops"
-                    labels={[
-                      "Soybean",
-                      "Corn",
-                      "Cotton",
-                      "Coffee",
-                      "Sugarcane",
-                    ]}
-                    series={[10, 20, 32, 40, 11]}
-                  />
-                  <ChartCard
-                    title="Total Crops"
-                    labels={[
-                      "Soybean",
-                      "Corn",
-                      "Cotton",
-                      "Coffee",
-                      "Sugarcane",
-                    ]}
-                    series={[10, 20, 32, 40, 11]}
-                  />
-                </div>
-              </>
-            )}
-          </>
-        )}
-      </div>
+      {loading ? (
+        <Loader />
+      ) : (
+        <>
+          {!producersData?.length ? (
+            <EmptyMessage />
+          ) : (
+            <div className="w-full">
+              <div className="w-full flex gap-6 mt-9 overflow-auto pb-2">
+                <TotalCard title="Total Profiles" value="20" percent="20%" />
+                <TotalCard title="Total Farms" value="50" percent="14%" />
+                <TotalCard title="Total Area" value="50m2" percent="14%" />
+              </div>
+              <div className="flex md:flex-row flex-col gap-10 mt-10">
+                <ChartCard
+                  title="Total Crops"
+                  labels={["Soybean", "Corn", "Cotton", "Coffee", "Sugarcane"]}
+                  series={[10, 20, 32, 40, 11]}
+                />
+                <ChartCard
+                  title="Total Crops"
+                  labels={["Soybean", "Corn", "Cotton", "Coffee", "Sugarcane"]}
+                  series={[10, 20, 32, 40, 11]}
+                />
+              </div>
+            </div>
+          )}
+        </>
+      )}
     </div>
   );
 }
