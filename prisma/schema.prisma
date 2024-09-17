@@ -14,10 +14,10 @@ model Producer {
   farmName       String
   city           String
   state          String
-  totalArea      String
-  cultivableArea String
-  vegetationArea String
-  crops          String
+  totalArea      Int
+  cultivableArea Int
+  vegetationArea Int
+  crops          Json
   created_at     DateTime @default(now())
   updated_at     DateTime @updatedAt
 }

@@ -17,10 +17,10 @@ export interface Producer {
   farmName: string;
   city: string;
   state: string;
-  totalArea: string;
-  cultivableArea: string;
-  vegetationArea: string;
-  crops: string;
+  totalArea: number;
+  cultivableArea: number;
+  vegetationArea: number;
+  crops: Array<string>;
   created_at?: string;
   updated_at?: string;
 }

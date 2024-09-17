@@ -5,13 +5,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { schema } from "./validationSchema";
 import { z } from "zod";
 import Input from "../Input";
-import Select from "../Select";
 import { crops, states } from "../Select/options";
 import Button from "../Button";
 import { X } from "lucide-react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../../../store";
 import { createProducer, toggleForm } from "../../../../store/reducers/actions";
+import SelectInput from "../Select";
 
 type FormData = z.infer<typeof schema>;
 
@@ -30,7 +30,7 @@ const FarmForm = ({ show, onClose }: IFarmFormProps) => {
   } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
-      crops: undefined,
+      crops: [],
     },
   });
 
@@ -75,12 +75,12 @@ const FarmForm = ({ show, onClose }: IFarmFormProps) => {
         />
         <Input
           label="City"
-          placeholder="Ciy Name..."
+          placeholder="City Name..."
           register={register}
           name="city"
           errors={errors}
         />
-        <Select
+        <SelectInput
           label="State"
           register={register}
           name="state"
@@ -111,12 +111,14 @@ const FarmForm = ({ show, onClose }: IFarmFormProps) => {
           name="vegetationArea"
           errors={errors}
         />
-        <Select
-          label="Crops Type"
+        <SelectInput
+          label="Crops"
           register={register}
           name="crops"
           options={crops}
           errors={errors}
+          isMulti
+          menuPlacement="top"
         />
         <div className="flex justify-between">
           <Button
