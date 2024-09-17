@@ -19,7 +19,7 @@ const chartConfig = {
     },
     legend: {
       show: true,
-      fontSize: "12px",
+      fontSize: "10px",
       fontFamily: "Montserrat",
       fontWeight: "500",
       labels: {

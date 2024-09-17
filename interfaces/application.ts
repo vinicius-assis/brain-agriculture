@@ -34,3 +34,33 @@ export interface Farm {
   vegetationArea: string;
   crops: string;
 }
+
+export interface CropSums {
+  [key: string]: number;
+}
+
+export interface StateAreaSums {
+  [key: string]: number;
+}
+
+export interface ChartsData {
+  totalFarms: number;
+  totalAreaSum: number;
+  totalCultivableAreaSum: number;
+  crops: {
+    labels: string[];
+    series: number[];
+  };
+  cultivableAreaByState: {
+    labels: string[];
+    series: number[];
+  };
+  vegetationAreaByState: {
+    labels: string[];
+    series: number[];
+  };
+  totalCultivableAndVegetationArea: {
+    labels: string[];
+    series: number[];
+  };
+}

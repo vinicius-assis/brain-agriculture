@@ -1,5 +1,5 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { Producer } from "../../interfaces/application";
+import { ChartsData, Producer } from "../../interfaces/application";
 import {
   closeDeleteModal,
   createProducer,
@@ -10,6 +10,7 @@ import {
   toggleMenu,
   updateProducer,
 } from "./actions";
+import generateChartsData from "@/helpers/generateChartsData";
 
 interface ApplicationState {
   producers: Producer[];
@@ -20,6 +21,7 @@ interface ApplicationState {
     show: boolean;
     id: string | undefined;
   };
+  chartData: ChartsData | undefined;
 }
 
 const initialState: ApplicationState = {
@@ -31,6 +33,7 @@ const initialState: ApplicationState = {
     show: false,
     id: "",
   },
+  chartData: undefined,
 };
 
 export const ApplicationReducer = createReducer(initialState, (builder) => {
@@ -51,6 +54,7 @@ export const ApplicationReducer = createReducer(initialState, (builder) => {
       ...state,
       loading: false,
       producers: action.payload,
+      chartData: generateChartsData(action.payload),
     };
   });
 
@@ -69,6 +73,7 @@ export const ApplicationReducer = createReducer(initialState, (builder) => {
       ...state,
       loading: false,
       producers: [...state.producers, action.payload.data],
+      chartData: generateChartsData([...state.producers, action.payload.data]),
     };
   });
 
@@ -84,12 +89,14 @@ export const ApplicationReducer = createReducer(initialState, (builder) => {
 
   builder.addCase(updateProducer.fulfilled, (state, action) => {
     const updatedProducer = action.payload;
+    const updateItems = state.producers.map((producer) =>
+      producer.id === updatedProducer.id ? updatedProducer : producer
+    );
     return {
       ...state,
       loading: false,
-      producers: state.producers.map((producer) =>
-        producer.id === updatedProducer.id ? updatedProducer : producer
-      ),
+      producers: updateItems,
+      chartData: generateChartsData(updateItems),
     };
   });
 
@@ -107,11 +114,12 @@ export const ApplicationReducer = createReducer(initialState, (builder) => {
     const updateItems = state.producers.filter(
       ({ id }) => id !== action.payload.id
     );
-    console.log(updateItems);
+
     return {
       ...state,
       loading: false,
       producers: updateItems,
+      chartData: generateChartsData(updateItems),
     };
   });
 

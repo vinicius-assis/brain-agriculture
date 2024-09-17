@@ -10,3 +10,5 @@ export const getDeleteModal = (state: RootState) =>
 export const getLoadingState = (state: RootState) => state.application.loading;
 
 export const getProducers = (state: RootState) => state.application.producers;
+
+export const getChartData = (state: RootState) => state.application.chartData;

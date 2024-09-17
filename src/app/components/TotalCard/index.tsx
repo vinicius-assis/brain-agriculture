@@ -6,7 +6,7 @@ import { ArrowUp, ArrowDown } from "lucide-react";
 interface ITotalCardProps {
   title: string;
   value: string;
-  percent: string;
+  percent?: string;
   decrease?: boolean;
 }
 
@@ -22,22 +22,28 @@ const TotalCard = ({ title, value, percent, decrease }: ITotalCardProps) => {
       >
         {title}
       </Typography>
-      <div className="flex justify-between items-center">
+      <div
+        className={`flex ${
+          percent ? "justify-between" : "justify-end"
+        } items-center`}
+      >
         <Typography className="md:text-4xl text-3xl font-bold">
           {value}
         </Typography>
-        <Typography
-          className={`flex items-center text-sm font-medium ${
-            decrease ? "text-red-000" : "text-normal-green"
-          }`}
-        >
-          {`${!decrease ? "+" : "-"} ${percent}`}{" "}
-          {!decrease ? (
-            <ArrowUp data-testid="increase-icon" size={12} />
-          ) : (
-            <ArrowDown data-testid="decrease-icon" size={12} />
-          )}
-        </Typography>
+        {percent && (
+          <Typography
+            className={`flex items-center text-sm font-medium ${
+              decrease ? "text-red-000" : "text-normal-green"
+            }`}
+          >
+            {`${!decrease ? "+" : "-"} ${percent}`}{" "}
+            {!decrease ? (
+              <ArrowUp data-testid="increase-icon" size={12} />
+            ) : (
+              <ArrowDown data-testid="decrease-icon" size={12} />
+            )}
+          </Typography>
+        )}
       </div>
     </Card>
   );
