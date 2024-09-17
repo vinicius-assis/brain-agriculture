@@ -14,6 +14,7 @@ import {
 import { useEffect } from "react";
 import { AppDispatch } from "../../store";
 import Typography from "./components/Typography";
+import Loader from "./components/Loader";
 
 export default function Dashboard() {
   const dispatch = useDispatch<AppDispatch>();
@@ -38,7 +39,7 @@ export default function Dashboard() {
       </Button>
       <div className="w-full">
         {loading ? (
-          <Typography>Loading data</Typography>
+          <Loader />
         ) : (
           <>
             {!producersData?.length ? (
