@@ -1,6 +1,4 @@
 "use client";
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import dynamic from "next/dynamic";
 import React from "react";
 import { useSelector } from "react-redux";
 import { getChartData } from "../../../../store/reducers/selectors";
