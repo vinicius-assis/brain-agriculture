@@ -5,13 +5,14 @@ import { LayoutDashboard, Tractor, User } from "lucide-react";
 import { getMenuState } from "../../../../store/reducers/selectors";
 import Button from "../Button";
 import { toggleForm } from "../../../../store/reducers/actions";
+import Link from "next/link";
 
 const MenuNavigation = () => {
   const pathname = usePathname();
 
   return (
     <nav className="flex flex-col gap-4 items-center">
-      <a
+      <Link
         className={`flex items-center gap-2 text-xl font-semibold w-fit ${
           pathname === "/" ? "underline text-medium-green" : ""
         }`}
@@ -19,8 +20,8 @@ const MenuNavigation = () => {
       >
         <LayoutDashboard size={24} strokeWidth={2} color="#065F46" />
         Dashboard
-      </a>
-      <a
+      </Link>
+      <Link
         className={`flex items-center gap-2 text-xl font-semibold w-fit ${
           pathname === "/profiles" ? "underline text-medium-green" : ""
         }`}
@@ -28,8 +29,8 @@ const MenuNavigation = () => {
       >
         <User size={24} strokeWidth={2} color="#065F46" />
         Profiles
-      </a>
-      <a
+      </Link>
+      <Link
         className={`flex items-center gap-2 text-xl font-semibold w-fit ${
           pathname === "/farms" ? "underline text-medium-green" : ""
         }`}
@@ -37,7 +38,7 @@ const MenuNavigation = () => {
       >
         <Tractor size={24} strokeWidth={2} color="#065F46" />
         Farms
-      </a>
+      </Link>
     </nav>
   );
 };
