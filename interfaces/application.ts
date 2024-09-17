@@ -1,7 +1,4 @@
-export interface GetProducerResponse {
-  message: string;
-  data: Producer[];
-}
+export type GetProducerResponse = Producer[];
 
 export interface PostProducerResponse {
   message: string;
@@ -14,7 +11,7 @@ export interface DeleteProducerResponse {
 }
 
 export interface Producer {
-  id: string;
+  id?: string;
   document: string;
   name: string;
   farmName: string;
@@ -24,8 +21,8 @@ export interface Producer {
   cultivableArea: string;
   vegetationArea: string;
   crops: string;
-  created_at: string;
-  updated_at: string;
+  created_at?: string;
+  updated_at?: string;
 }
 
 export interface Farm {

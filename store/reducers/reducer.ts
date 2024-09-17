@@ -36,11 +36,13 @@ export const ApplicationReducer = createReducer(initialState, (builder) => {
     producers: [],
   }));
 
-  builder.addCase(fetchProducers.fulfilled, (state, action) => ({
-    ...state,
-    loading: false,
-    producers: action.payload.data,
-  }));
+  builder.addCase(fetchProducers.fulfilled, (state, action) => {
+    return {
+      ...state,
+      loading: false,
+      producers: action.payload,
+    };
+  });
 
   builder.addCase(createProducer.pending, (state) => ({
     ...state,
@@ -52,11 +54,13 @@ export const ApplicationReducer = createReducer(initialState, (builder) => {
     loading: false,
   }));
 
-  builder.addCase(createProducer.fulfilled, (state, action) => ({
-    ...state,
-    loading: false,
-    producers: [...state.producers, action.payload.data],
-  }));
+  builder.addCase(createProducer.fulfilled, (state, action) => {
+    return {
+      ...state,
+      loading: false,
+      producers: [...state.producers, action.payload.data],
+    };
+  });
 
   builder.addCase(updateProducer.pending, (state) => ({
     ...state,
