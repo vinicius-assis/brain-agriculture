@@ -11,6 +11,12 @@ export const toggleMenu = createAction("application/toggleMenu");
 
 export const toggleForm = createAction("application/toggleForm");
 
+export const openDeleteModal = createAction<string | undefined>(
+  "application/openDeleteModal"
+);
+
+export const closeDeleteModal = createAction("application/closeDeleteModal");
+
 export const createProducer = createAsyncThunk<PostProducerResponse, Producer>(
   "application/createProducer",
   async (data) => ProducerService.createProducer(data)

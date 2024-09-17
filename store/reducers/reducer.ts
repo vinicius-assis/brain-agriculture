@@ -1,9 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit";
 import { Producer } from "../../interfaces/application";
 import {
+  closeDeleteModal,
   createProducer,
   deleteProducer,
   fetchProducers,
+  openDeleteModal,
   toggleForm,
   toggleMenu,
   updateProducer,
@@ -14,13 +16,21 @@ interface ApplicationState {
   showMenu: boolean;
   showForm: boolean;
   loading: boolean;
+  deleteModal: {
+    show: boolean;
+    id: string | undefined;
+  };
 }
 
 const initialState: ApplicationState = {
   producers: [],
   showMenu: false,
   showForm: false,
-  loading: false,
+  loading: true,
+  deleteModal: {
+    show: false,
+    id: "",
+  },
 };
 
 export const ApplicationReducer = createReducer(initialState, (builder) => {
@@ -86,20 +96,24 @@ export const ApplicationReducer = createReducer(initialState, (builder) => {
   builder.addCase(deleteProducer.pending, (state) => ({
     ...state,
     loading: true,
-    producers: [],
   }));
 
   builder.addCase(deleteProducer.rejected, (state) => ({
     ...state,
     loading: false,
-    producers: [],
   }));
 
-  builder.addCase(deleteProducer.fulfilled, (state, action) => ({
-    ...state,
-    loading: false,
-    producers: state.producers.filter(({ id }) => id !== action.payload.id),
-  }));
+  builder.addCase(deleteProducer.fulfilled, (state, action) => {
+    const updateItems = state.producers.filter(
+      ({ id }) => id !== action.payload.id
+    );
+    console.log(updateItems);
+    return {
+      ...state,
+      loading: false,
+      producers: updateItems,
+    };
+  });
 
   builder.addCase(toggleMenu, (state) => ({
     ...state,
@@ -109,5 +123,21 @@ export const ApplicationReducer = createReducer(initialState, (builder) => {
   builder.addCase(toggleForm, (state) => ({
     ...state,
     showForm: !state.showForm,
+  }));
+
+  builder.addCase(openDeleteModal, (state, action) => ({
+    ...state,
+    deleteModal: {
+      show: true,
+      id: action.payload,
+    },
+  }));
+
+  builder.addCase(closeDeleteModal, (state) => ({
+    ...state,
+    deleteModal: {
+      show: false,
+      id: "",
+    },
   }));
 });
