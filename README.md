@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app)
 
 ## Getting Started
 
@@ -52,3 +52,7 @@ O mesmo consiste em um cadastro de produtor rural com os seguintes dados:
     - Caso entenda que faça sentido, utilize [Context API](https://reactjs.org/docs/context.html) como recurso adicional ou substituto ao Redux (Opcional)
   - Crie pelo menos um teste unitário por componente (Opcional)
   - A criação das estruturas de dados "mockados" faz parte da avaliação.
+
+# Figma
+
+I've decided to create a layout for this application. You can check it out [here](https://www.figma.com/design/MluaFP4vTcrJvlXUxfsasW/Brain-Agriculture---Challenge?node-id=16-175&node-type=frame&t=i12FiHXrFq8PVWML-0).
