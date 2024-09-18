@@ -1,4 +1,4 @@
-import { screen, render, fireEvent, waitFor } from "@testing-library/react";
+import { screen, render, fireEvent } from "@testing-library/react";
 import SelectInput from ".";
 import { useForm } from "react-hook-form";
 

@@ -58,7 +58,7 @@ const FarmForm = ({ show, onClose }: IFarmFormProps) => {
 
   useEffect(() => {
     reset(defaultValues);
-  }, [selectedId, reset]);
+  }, [selectedId, reset, defaultValues]);
 
   const onSubmit = async (data: FormData) => {
     if (selectedId) {
