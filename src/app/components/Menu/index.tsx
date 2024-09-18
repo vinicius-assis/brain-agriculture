@@ -4,11 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { LayoutDashboard, Tractor, User } from "lucide-react";
 import { getMenuState } from "../../../../store/reducers/selectors";
 import Button from "../Button";
-import { openForm } from "../../../../store/reducers/actions";
+import { openForm, toggleMenu } from "../../../../store/reducers/actions";
 import Link from "next/link";
+import { AppDispatch } from "../../../../store";
 
 const MenuNavigation = () => {
   const pathname = usePathname();
+  const dispatch = useDispatch<AppDispatch>();
+  const handleCloseForm = () => dispatch(toggleMenu());
 
   return (
     <nav className="flex flex-col gap-4 items-center">
@@ -17,6 +20,7 @@ const MenuNavigation = () => {
           pathname === "/" ? "underline text-medium-green" : ""
         }`}
         href="/"
+        onClick={handleCloseForm}
       >
         <LayoutDashboard size={24} strokeWidth={2} color="#065F46" />
         Dashboard
@@ -26,6 +30,7 @@ const MenuNavigation = () => {
           pathname === "/profiles" ? "underline text-medium-green" : ""
         }`}
         href="/profiles"
+        onClick={handleCloseForm}
       >
         <User size={24} strokeWidth={2} color="#065F46" />
         Profiles
@@ -35,6 +40,7 @@ const MenuNavigation = () => {
           pathname === "/farms" ? "underline text-medium-green" : ""
         }`}
         href="/farms"
+        onClick={handleCloseForm}
       >
         <Tractor size={24} strokeWidth={2} color="#065F46" />
         Farms

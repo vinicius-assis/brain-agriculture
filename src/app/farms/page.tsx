@@ -6,17 +6,12 @@ import { FARM_TABLE_HEADERS } from "../components/Table/data";
 import Typography from "../components/Typography";
 import Button from "../components/Button";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  fetchProducers,
-  closeForm,
-  openForm,
-} from "../../../store/reducers/actions";
+import { closeForm, openForm } from "../../../store/reducers/actions";
 import {
   getFormState,
   getLoadingState,
   getProducers,
 } from "../../../store/reducers/selectors";
-import { useEffect } from "react";
 import { AppDispatch } from "../../../store";
 import Loader from "../components/Loader";
 import EmptyMessage from "../components/EmptyMessage";
@@ -56,10 +51,6 @@ export default function Farms() {
       }
     );
   const rows = getRows();
-
-  useEffect(() => {
-    dispatch(fetchProducers());
-  }, []);
 
   return (
     <div className="p-8 h-[calc(100vh-104px)] overflow-hidden md:pl-0 md:flex">
