@@ -1,33 +1,22 @@
 "use client";
-import dynamic from "next/dynamic";
 import Card from "../Card";
 import Typography from "../Typography";
-const ChartComponent = dynamic(() => import("react-apexcharts"), {
-  ssr: false,
-});
+import { Pie } from "react-chartjs-2";
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
+import { CHART_COLORS } from "./colors";
 
-const chartConfig = {
-  type: "pie" as const,
-  options: {
-    chart: {
-      toolbar: {
-        show: false,
-      },
+ChartJS.register(ArcElement, Tooltip, Legend);
+
+const data = (labels: Array<string>, values: Array<string | number>) => ({
+  labels,
+  datasets: [
+    {
+      data: values,
+      backgroundColor: CHART_COLORS,
+      borderWidth: 1,
     },
-    dataLabels: {
-      enabled: false,
-    },
-    legend: {
-      show: true,
-      fontSize: "10px",
-      fontFamily: "Montserrat",
-      fontWeight: "500",
-      labels: {
-        colors: "#64646b",
-      },
-    },
-  },
-};
+  ],
+});
 
 interface IChartCardProps {
   labels: Array<string>;
@@ -40,20 +29,12 @@ const ChartCard = ({
   labels,
   series,
 }: IChartCardProps) => {
-  const updatedConfig = {
-    ...chartConfig,
-    options: {
-      ...chartConfig.options,
-      labels,
-    },
-    series,
-  };
   return (
     <Card data-testid="chart-card" className="max-w-96 w-full pl-4 pt-4">
       <Typography className="text-small-spacing font-normal uppercase text-gray-500">
         {title}
       </Typography>
-      <ChartComponent width="100%" {...updatedConfig} />
+      <Pie data={data(labels, series)} />
     </Card>
   );
 };
