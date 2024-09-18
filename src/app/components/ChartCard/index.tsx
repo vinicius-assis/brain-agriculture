@@ -6,6 +6,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { CHART_COLORS } from "./colors";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
+console.log(Legend);
 
 const data = (labels: Array<string>, values: Array<string | number>) => ({
   labels,
@@ -30,11 +31,22 @@ const ChartCard = ({
   series,
 }: IChartCardProps) => {
   return (
-    <Card data-testid="chart-card" className="max-w-96 w-full pl-4 pt-4">
-      <Typography className="text-small-spacing font-normal uppercase text-gray-500">
+    <Card data-testid="chart-card" className="max-w-96 w-full p-4">
+      <Typography className="text-small-spacing font-normal uppercase text-gray-500 mb-2">
         {title}
       </Typography>
-      <Pie data={data(labels, series)} />
+      <div className="w-full max-w-80">
+        <Pie
+          data={data(labels, series)}
+          options={{
+            plugins: {
+              legend: {
+                labels: { boxWidth: 10, boxHeight: 10 },
+              },
+            },
+          }}
+        />
+      </div>
     </Card>
   );
 };
