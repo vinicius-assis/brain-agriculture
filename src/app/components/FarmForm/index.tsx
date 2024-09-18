@@ -71,6 +71,9 @@ const FarmForm = ({ show, onClose }: IFarmFormProps) => {
     reset();
   };
 
+  const defaultState = getValues("state") || null;
+  const defaultCrops = getValues("crops") || [];
+
   return (
     <div
       data-testid="farm-form"
@@ -117,7 +120,7 @@ const FarmForm = ({ show, onClose }: IFarmFormProps) => {
           name="state"
           options={states}
           errors={errors}
-          defaultValue={getValues("state")}
+          defaultValue={defaultState}
         />
         <Input
           label="Total Area"
@@ -151,7 +154,7 @@ const FarmForm = ({ show, onClose }: IFarmFormProps) => {
           errors={errors}
           isMulti
           menuPlacement="top"
-          defaultValue={getValues("crops")}
+          defaultValue={defaultCrops}
         />
         <div className="flex justify-between">
           <Button

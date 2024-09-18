@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import Select, { SingleValue, MultiValue } from "react-select";
 import {
   UseFormRegister,
@@ -33,47 +33,47 @@ const SelectInput = <T extends FieldValues>({
   menuPlacement = "bottom",
   defaultValue = [],
 }: ISelectProps<T>) => {
-  const formattedOptions = options.map((option) => ({
-    value: option.value,
-    label: option.label,
-  }));
-
-  const getDefaultValue = () => {
+  const [selectedValue, setSelectedValue] = useState<any>(null);
+  const getDefaultValue = useMemo(() => {
     if (isMulti) {
       return defaultValue.map((value: string) =>
-        formattedOptions.find((option) => option.value === value)
+        options.find((option) => option.value === value)
       );
     }
-    return (
-      formattedOptions.find((option) => option.value === defaultValue) || null
-    );
-  };
+    return options.find((option) => option.value === defaultValue) || null;
+  }, [defaultValue, name, isMulti, options]);
 
-  const [selectedValue, setSelectedValue] = useState<any>(getDefaultValue());
+  const handleChange = useCallback(
+    (
+      selectedOption:
+        | SingleValue<SelectOption>
+        | MultiValue<SelectOption>
+        | null
+    ) => {
+      if (isMulti) {
+        const values = selectedOption
+          ? (selectedOption as MultiValue<SelectOption>).map(
+              (option) => option.value
+            )
+          : [];
+        register(name).onChange({ target: { name, value: values } });
+        setSelectedValue(selectedOption);
+      } else {
+        const value = selectedOption
+          ? (selectedOption as SingleValue<SelectOption>)?.value
+          : "";
+        register(name).onChange({ target: { name, value } });
+        setSelectedValue(selectedOption);
+      }
+    },
+    [setSelectedValue]
+  );
 
   useEffect(() => {
-    setSelectedValue(getDefaultValue());
-  }, [defaultValue]);
-
-  const handleChange = (
-    selectedOption: SingleValue<SelectOption> | MultiValue<SelectOption> | null
-  ) => {
-    if (isMulti) {
-      const values = selectedOption
-        ? (selectedOption as MultiValue<SelectOption>).map(
-            (option) => option.value
-          )
-        : [];
-      register(name).onChange({ target: { name, value: values } });
-      setSelectedValue(selectedOption);
-    } else {
-      const value = selectedOption
-        ? (selectedOption as SingleValue<SelectOption>)?.value
-        : "";
-      register(name).onChange({ target: { name, value } });
-      setSelectedValue(selectedOption);
+    if (getDefaultValue?.length || getDefaultValue?.value) {
+      setSelectedValue(getDefaultValue);
     }
-  };
+  }, [getDefaultValue]);
 
   return (
     <div className="mb-4">
@@ -82,7 +82,7 @@ const SelectInput = <T extends FieldValues>({
       </label>
       <Select
         isMulti={isMulti}
-        options={formattedOptions}
+        options={options}
         onChange={handleChange}
         value={selectedValue}
         classNamePrefix="select"

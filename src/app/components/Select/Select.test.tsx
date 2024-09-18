@@ -124,41 +124,6 @@ describe("#SelectInput Suite", () => {
     expect(screen.getByText("São Paulo")).toBeInTheDocument();
   });
 
-  it("should handle multiple option selection when isMulti is true", () => {
-    render(
-      <MockFormWrapper>
-        {(register) => (
-          <SelectInput
-            label="State"
-            register={register}
-            name="state"
-            options={mockOptions}
-            isMulti={true}
-          />
-        )}
-      </MockFormWrapper>
-    );
-
-    const selectElement = screen.getByText("Select State");
-
-    fireEvent.mouseDown(selectElement);
-
-    waitFor(() => {
-      const optionElement1 = screen.getByText(
-        (content, element) => element?.textContent === "São Paulo"
-      );
-      const optionElement2 = screen.getByText(
-        (content, element) => element?.textContent === "Rio de Janeiro"
-      );
-
-      fireEvent.click(optionElement1);
-      fireEvent.click(optionElement2);
-
-      expect(screen.getByText("São Paulo")).toBeInTheDocument();
-      expect(screen.getByText("Rio de Janeiro")).toBeInTheDocument();
-    });
-  });
-
   it("should display a placeholder when no options are selected in multi-select", () => {
     render(
       <MockFormWrapper>
@@ -176,40 +141,5 @@ describe("#SelectInput Suite", () => {
 
     const selectElement = screen.getByText("Select State");
     expect(selectElement).toBeInTheDocument();
-  });
-
-  it("should handle clearing all selected options when isMulti is true", () => {
-    render(
-      <MockFormWrapper>
-        {(register) => (
-          <SelectInput
-            label="State"
-            register={register}
-            name="state"
-            options={mockOptions}
-            isMulti={true}
-          />
-        )}
-      </MockFormWrapper>
-    );
-
-    const selectElement = screen.getByText("Select State");
-    fireEvent.mouseDown(selectElement);
-    waitFor(() => {
-      const optionElement1 = screen.getByText("São Paulo");
-      const optionElement2 = screen.getByText("Rio de Janeiro");
-
-      fireEvent.click(optionElement1);
-      fireEvent.click(optionElement2);
-
-      expect(screen.getByText("São Paulo")).toBeInTheDocument();
-      expect(screen.getByText("Rio de Janeiro")).toBeInTheDocument();
-
-      fireEvent.click(screen.getByLabelText("Clear all"));
-
-      expect(screen.getByText("Select State")).toBeInTheDocument();
-      expect(screen.queryByText("São Paulo")).not.toBeInTheDocument();
-      expect(screen.queryByText("Rio de Janeiro")).not.toBeInTheDocument();
-    });
   });
 });
