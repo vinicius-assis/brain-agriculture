@@ -13,8 +13,8 @@ describe("#Navbar Suite", () => {
     const menuIcon = screen.getByRole("button");
     expect(menuIcon).toBeInTheDocument();
 
-    const logoImage = screen.getByAltText("Brain Agriculture icon");
-    expect(logoImage).toBeInTheDocument();
+    const logo = screen.getByText("Brain Agriculture");
+    expect(logo).toBeInTheDocument();
   });
 
   it("should toggle the menu icon when clicked", () => {

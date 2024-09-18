@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { useAppDispatch } from "../../../../store/hooks";
 import { toggleMenu } from "../../../../store/reducers/actions";
 import { getMenuState } from "../../../../store/reducers/selectors";
+import Typography from "../Typography";
 
 const Navbar = () => {
   const dispatch = useAppDispatch();
@@ -23,12 +24,9 @@ const Navbar = () => {
         )}
       </button>
       <div className="">
-        <Image
-          width={100}
-          height={38}
-          src="/assets/logo.png"
-          alt="Brain Agriculture icon"
-        />
+        <Typography className="text-2xl font-semibold">
+          Brain Agriculture
+        </Typography>
       </div>
     </nav>
   );
