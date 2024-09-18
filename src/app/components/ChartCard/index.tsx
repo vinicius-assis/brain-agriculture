@@ -6,7 +6,6 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from "chart.js";
 import { CHART_COLORS } from "./colors";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
-console.log(Legend);
 
 const data = (labels: Array<string>, values: Array<string | number>) => ({
   labels,

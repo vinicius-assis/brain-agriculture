@@ -5,7 +5,10 @@ import {
   StateAreaSums,
 } from "../../interfaces/application";
 
-const generateChartsData = (data: Producer[]): ChartsData => {
+const generateChartsData = (data: Producer[]): Partial<ChartsData> => {
+  if (!data?.length) {
+    return {};
+  }
   const totalAreaSum = data.reduce((sum, farm) => sum + farm.totalArea, 0);
   const totalCultivableAreaSum = data.reduce(
     (sum, farm) => sum + farm.cultivableArea,
