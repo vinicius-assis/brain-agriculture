@@ -14,7 +14,7 @@ const TotalCard = ({ title, value, percent, decrease }: ITotalCardProps) => {
   return (
     <Card
       data-testid="total-card"
-      className="flex flex-col justify-between max-w-72 md:max-w-64 h-28 w-full px-4 py-2"
+      className="flex flex-col justify-between md:min-w-72 min-w-52 h-28 w-full px-4 py-2"
     >
       <Typography
         as="h3"
