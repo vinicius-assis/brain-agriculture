@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/prisma";
 
 type Params = {
   id: string;
@@ -18,6 +16,7 @@ export async function PATCH(
     }
 
     const data = await request.json();
+    const currentDate = Date.now();
 
     const updatedItem = await prisma.producer.update({
       where: { id },
