@@ -77,7 +77,7 @@ const FarmForm = ({ show, onClose }: IFarmFormProps) => {
   return (
     <div
       data-testid="farm-form"
-      className={`w-full md:w-[500px] md:shadow-sm absolute h-[calc(100vh-104px)] bg-off-white z-10 left-0 top-[64px] pt-5 overflow-auto ${
+      className={`w-full md:max-w-xl md:shadow-sm absolute h-[calc(100vh-104px)] bg-off-white z-10 left-0 top-[64px] pt-5 overflow-auto ${
         !show ? "-translate-x-[100%]" : "translate-x-[0]"
       } transition-all ease-out duration-300`}
     >

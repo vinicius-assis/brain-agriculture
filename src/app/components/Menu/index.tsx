@@ -64,7 +64,7 @@ const Menu = () => {
       >
         <MenuNavigation />
       </div>
-      <div className="w-1/4 relative md:block md:mr-4 hidden">
+      <div className="w-1/ flex-col relative md:flex pl-5 pr-10 hidden">
         <Button onClick={handleOpenForm} className="mx-auto mb-8">
           + New Profile
         </Button>
