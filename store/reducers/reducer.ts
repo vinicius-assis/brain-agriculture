@@ -1,5 +1,4 @@
 import { createReducer } from "@reduxjs/toolkit";
-import { ChartsData, Producer } from "../../interfaces/application";
 import {
   closeDeleteModal,
   createProducer,
@@ -12,38 +11,9 @@ import {
   openForm,
 } from "./actions";
 import generateChartsData from "@/helpers/generateChartsData";
+import { INITIAL_STATE } from "./variables";
 
-interface ApplicationState {
-  producers: Producer[];
-  showMenu: boolean;
-  loading: boolean;
-  formModal: {
-    show: boolean;
-    id: string | undefined;
-  };
-  deleteModal: {
-    show: boolean;
-    id: string | undefined;
-  };
-  chartData: ChartsData | undefined;
-}
-
-const initialState: ApplicationState = {
-  producers: [],
-  showMenu: false,
-  loading: true,
-  formModal: {
-    show: false,
-    id: "",
-  },
-  deleteModal: {
-    show: false,
-    id: "",
-  },
-  chartData: undefined,
-};
-
-export const ApplicationReducer = createReducer(initialState, (builder) => {
+export const ApplicationReducer = createReducer(INITIAL_STATE, (builder) => {
   builder.addCase(fetchProducers.pending, (state) => ({
     ...state,
     loading: true,

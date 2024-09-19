@@ -47,9 +47,9 @@ const mockResponse = {
 };
 
 describe("#generateChartData Suite", () => {
-  it("should return a empty object when receive a empty array as param", () => {
+  it("should return undefined when receive a empty array as param", () => {
     const data = generateChartsData([]);
-    expect(data).toEqual({});
+    expect(data).toEqual(undefined);
   });
 
   it("should return chart data values correctly", () => {
